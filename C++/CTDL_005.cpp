@@ -53,8 +53,7 @@ void linked_list::del(node *list, int key) {
             list->data = list->next->data;
             list->next = list->next->next;
             free(tmp);
-        }
-        else {
+        } else {
             cout << list->data << " ";
             list = list->next;
         }

@@ -4,7 +4,6 @@
 #include <vector>
 using namespace std;
 
-
 class dp {
    public:
     int n, m, k;

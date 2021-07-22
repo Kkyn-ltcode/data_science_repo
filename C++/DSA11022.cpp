@@ -10,10 +10,11 @@ struct node {
 
 class binary_tree {
    public:
+    int num_of_node = 0;
     node *make_node(int);
     vector<int> input();
     node *construct_BST(vector<int>);
-    int find_depth(node *, int);
+    void post_order(node *);
     void function();
 };
 
@@ -45,27 +46,17 @@ node *binary_tree::construct_BST(vector<int> pre_order) {
         else if (pre_order[i] > pre_order[0])
             right_sub.push_back(pre_order[i]);
     }
+    if (left_sub.size() != 0 || right_sub.size() != 0)
+        num_of_node++;
     root->left = construct_BST(left_sub);
     root->right = construct_BST(right_sub);
     return root;
 }
 
-int binary_tree::find_depth(node *root, int depth) {
-    if (root == NULL)
-        return depth - 1;
-    else {
-        int depth_left = find_depth(root->left, depth + 1);
-        int depth_right = find_depth(root->right, depth + 1);
-        return max(depth_left, depth_right);
-    }
-    return depth;
-}
-
 void binary_tree::function() {
     vector<int> pre_order = input();
     node *root = construct_BST(pre_order);
-    int depth = find_depth(root, 0);
-    cout << depth << endl;
+    cout << num_of_node << endl;
 }
 
 int main() {
